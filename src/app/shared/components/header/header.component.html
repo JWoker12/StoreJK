@@ -1,0 +1,8 @@
+<mat-toolbar color="primary">
+    <span class="home" mat-icon-button routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">{{ title }}</span>
+    <span class="spacer"></span>
+    <button *ngIf="router.url != '/products'" mat-icon-button routerLink="/products" routerLinkActive="active" ariaCurrentWhenActive="page">
+        <mat-icon>add_shopping_cart</mat-icon>
+    </button>
+    <app-cart></app-cart>
+</mat-toolbar>

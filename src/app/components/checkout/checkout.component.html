@@ -1,0 +1,38 @@
+<div class="container">
+    <form class="form item" (ngSubmit)="onSubmit(checkoutForm)" #checkoutForm="ngForm">
+        <mat-form-field appearance="fill" class="form__element">
+            <input matInput [(ngModel)]="model.name" name="name" placeholder="Name"  #name="ngModel" required />
+            <mat-error *ngIf="name.valid || name.pristine">
+                Name is required
+            </mat-error>
+        </mat-form-field>
+        <div class="form__element">
+            <mat-radio-group>
+                <mat-radio-button value="pickup" (change)="onPickupOrDelivery(false)" checked>Pickup</mat-radio-button>
+                <mat-radio-button value="delivery" (change)="onPickupOrDelivery(true)">Delivery</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <ng-container *ngIf="isDelivery; else showStores">
+            <mat-form-field appearance="fill" class="form__element">
+                <input matInput [(ngModel)]="model.shippingAddress" name="shippingAddress" placeholder="Shipping Address"  #shippingAddress="ngModel" />
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="form__element">
+                <input matInput [(ngModel)]="model.city" name="city" placeholder="City" #city="ngModel" />
+            </mat-form-field>
+        </ng-container>
+        <ng-template #showStores>
+            <mat-form-field appearance="fill" class="form__element">
+                <mat-label>Select me</mat-label>
+                <mat-select name="store" #store="ngModel"[(ngModel)]="model.store">
+                    <mat-option [value]="tienda" *ngFor="let tienda of stores">
+                        {{ tienda.name }} - {{ tienda.openingHours }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </ng-template>
+        <app-details class="form__element"></app-details>
+        <div class="container__button">
+            <button [disabled]="!checkoutForm.form.valid" mat-raised-button color="primary" type="submit">CheckOut</button>
+        </div>
+    </form>
+</div>

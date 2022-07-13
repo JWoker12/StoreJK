@@ -1,0 +1,5 @@
+<ng-container class="container" *ngIf="{ total: total$ | async, quantity: quantity$ | async} as dataCart">
+    <button *ngIf="router.url != '/checkout'" mat-icon-button routerLink="/checkout" routerLinkActive="active" ariaCurrentWhenActive="page">
+        <mat-icon matBadge="{{ dataCart.quantity? dataCart.quantity : '' }}"  matBadgeColor="warn" matBadgeOverlap="false">shopping_cart</mat-icon>
+    </button>
+</ng-container>

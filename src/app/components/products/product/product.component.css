@@ -1,0 +1,18 @@
+.card {
+  min-width: 350px;
+  max-width: 350px;
+  margin: 10px;
+}
+
+.card .title {
+  text-align: center;
+  height: 50px;
+}
+
+.card .description {
+  height: 100px;
+}
+
+.card button {
+  width: 100%;
+}
